@@ -1,18 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Foodbox from './Components/Foodbox';
+import foods from './foods.json';
 
 class App extends Component {
+
+  state = {
+    allFoods: foods
+  }
+
+  displayFoods = () => {
+    return this.state.allFoods.map(eachFood => {
+      return (<Foodbox key={eachFood.name} name={eachFood.name} calories={eachFood.calories} image={eachFood.image}/>)
+    })
+  }
+
+  signUp = (e) => {
+    e.preventDefault() //Stops the page from changing pages.. Default old skool is too change pages on form submit
+    //In the near future this is going to post the state to a database/api 
+    console.log(this.state)
+}
+
   render() {
+    console.log(foods)
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      
+        <button onClick={this.addFood}> Add Food </button>
+      {this.displayFoods()}
+        
       </div>
     );
   }
