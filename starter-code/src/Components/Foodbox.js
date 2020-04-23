@@ -22,7 +22,11 @@ class Foodbox extends Component {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input className="input" type="number" value="1" />
+                <input className="input" type="number" 
+                value={this.props.quantity} 
+                onChange = {(e) => this.props.quantityChangeHandler(e,this.props.index)}
+                />
+                {/* this.props.quantity */}
               </div>
               <div className="control">
                 <button className="button is-info">+</button>
